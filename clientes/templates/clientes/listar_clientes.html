@@ -5,23 +5,30 @@
 {% endblock %}
 
 {% block conteudo %}
-  <table>
-    <thead>
+  <table class="table table-striped">
+    <thead class="thead-dark">
       <tr>
         <th>Nome</th>
         <th>E-mail</th>
         <th>Profissão</th>
+        <th>Ações</th>
       </tr>
     </thead>
     <tbody>
       {% for cliente in clientes %}
       <tr>
-        <td>{{ cliente.nome }}</td>
+        <td> <a href="{% url 'listar_cliente_id' cliente.id %}"> {{ cliente.nome }} </a></td>
         <td>{{ cliente.email }}</td>
         <td>{{ cliente.profissao }}</td>
+        <td>
+          <a class="btn btn-primary" href="{% url 'editar_cliente' cliente.id %}">Editar</a>
+          <a class="btn btn-danger" href="{% url 'remover_cliente' cliente.id %}">Remover</a>
+        </td>
       </tr>
       {% endfor %}
     </tbody>
   </table>
+
+  <a class="btn btn-primary" href="{% url 'cadastrar_cliente' %}">Cadastrar</a>
 
 {% endblock %}

@@ -1,4 +1,5 @@
 {% extends 'clientes/base.html' %}
+{% load meus_filtros %}
 
 {% block titulo %}
   Formulário de cliente
@@ -8,8 +9,30 @@
 
   <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Cadastrar">
-  </form>
-
+    <!-- {{ form.as_p }} Gera o formulário completo -->
+    <div class="form-group">
+      {{ form.nome.errors }}
+      <label>Nome: </label> {{ form.nome | addclass:'form-control' }}
+    </div>
+    <div class="form-group">
+      {{ form.email.errors }}
+      <label>Email: </label> {{ form.email | addclass:'form-control' }}
+    </div>
+    <div class="form-group">
+      {{ form.profissao.errors }}
+      <label>Profissao: </label> {{ form.profissao | addclass:'form-control' }}
+    </div>
+    <div class="form-group">
+      {{ form.sexo.errors }}
+      <label>Sexo: </label> {{ form.sexo | addclass:'form-control' }}
+    </div>
+    <div class="form-group">
+      {{ form.data_nascimento.errors }}
+      <label>Data de nascimento: </label> {{ form.data_nascimento | addclass:'form-control' }}
+    </div>
+    <div class="form-group">
+      <input class="btn btn-primary" type="submit" value="Cadastrar">   
+      <a class="btn btn-secondary" href="{% url 'listar_clientes' %}">Voltar</a>
+    </div> 
+  </form>  
 {% endblock %}
