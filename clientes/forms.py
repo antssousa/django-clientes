@@ -6,3 +6,4 @@ class ClienteForm(forms.ModelForm):
   class Meta:
     model = Cliente
     fields = ['nome', 'email', 'profissao', 'sexo', 'data_nascimento']
+    # fields = '__all__'

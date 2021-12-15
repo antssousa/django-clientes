@@ -3,6 +3,8 @@ from django.shortcuts import redirect, render
 from .models import Cliente
 from .forms import ClienteForm
 
+from django.contrib.auth.forms import UserCreationForm
+
 # Create your views here.
 
 def listar_clientes(request):
@@ -37,6 +39,18 @@ def remover_cliente(request, id):
     cliente.delete()
     return redirect('listar_clientes')
   return render(request, 'clientes/confirma_exclusao.html', {'cliente': cliente}) 
+
+def cadastrar_usuario(request):
+  if request.method == 'POST':
+    form_usuario = UserCreationForm(request.POST)
+    if form_usuario.is_valid():
+      form_usuario.save()
+      return redirect('listar_clientes')
+  else:
+    form_usuario = UserCreationForm()
+  return render(request, 'clientes/form_usuario.html', {'form_usuario': form_usuario})
+
+
 
 
 

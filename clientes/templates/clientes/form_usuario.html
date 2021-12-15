@@ -1,0 +1,31 @@
+{% extends 'clientes/base.html' %}
+
+{% load meus_filtros %}
+
+{% block titulo %}
+  Cadastro de usuários
+{% endblock %}
+
+{% block conteudo %}
+  <form method="post">
+    {% csrf_token %}
+    <div class="form-group">
+      {{ form_usuario.username.errors }}
+      <label>Nome de usuário: </label>
+      {{ form_usuario.username | addclass:'form-control'}}
+    </div>
+    <div class="form-group">
+      {{ form_usuario.password1.errors }}
+      <label>Senha: </label>
+      {{ form_usuario.password1 | addclass:'form-control'}}
+    </div>
+    <div class="form-group">
+      {{ form_usuario.password2.errors }}
+      <label>Confirmação de senha: </label>
+      {{ form_usuario.password2 | addclass:'form-control'}}
+    </div>
+    <div class="form-group">
+      <input type="submit" value="Cadastrar" class="btn btn-primary">
+    </div>
+  </form>
+{% endblock %}
